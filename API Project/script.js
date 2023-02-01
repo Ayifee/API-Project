@@ -1,3 +1,7 @@
+const selectSkill = document.getElementById("SelectCharSkill");
+const selectChar = document.getElementById("SelectChar")
+
+
 async function getCharacters() {
   let response = await fetch(`https://api.genshin.dev/characters/`)
   let data = await response.json();
@@ -12,8 +16,7 @@ async function getCharacterDetails(name) {
   let charDetails = await response.json();
   const skillTalents = charDetails.skillTalents;
 
-  const select = document.getElementById("SelectCharSkill");
-  select.innerHTML = ''
+  selectSkill.innerHTML = ''
   for (let i = 0; i < skillTalents.length; i++) {
     const option = document.createElement('option')
     option.value = "Skill: " + skillTalents[i].name + "\nUnlock: " + skillTalents[i].unlock + "\nDescription: " + skillTalents[i].description
@@ -21,23 +24,21 @@ async function getCharacterDetails(name) {
     option.innerHTML = skillTalents[i].name
     // console.log(skillTalents[i]);
     // console.log(skillTalents[i].name);
-    select.appendChild(option);
+    selectSkill.appendChild(option);
   }
-  select.addEventListener("change", (e) => console.log(e.target.value));
 }
 
 async function renderSelectChar() {
   let renderResponse = await fetch(`https://api.genshin.dev/characters/`)
   let charDropBox = await renderResponse.json();
-  select = document.getElementById('SelectChar');
   for (let i = 0; i < charDropBox.length; i++) {
     const option = document.createElement('option')
     option.value = charDropBox[i]
     option.innerHTML = charDropBox[i]
-    select.appendChild(option);
+    selectChar.appendChild(option);
   }
 
-  select.addEventListener("change", (e) => getCharactersInfo(e.target.value));
+  selectChar.addEventListener("change", (e) => getCharactersInfo(e.target.value));
 }
 
 async function getCharactersInfo(name) {
@@ -50,8 +51,29 @@ async function getCharactersInfo(name) {
   console.log("Weapon: " + charInfo.weapon);
   console.log("Vision: " + charInfo.vision);
   console.log("Description: " + charInfo.description);
-}
+  // console.log("Passive 1\n " + charInfo.passiveTalents[0].name);
+  // console.log("Description: " + charInfo.passiveTalents[0].description);
+  for (let i = 0; i < 3; i++) {
+    console.log(`Passive ${i + 1}\nName: ` + charInfo.passiveTalents[i].name);
+    console.log(`Description: ` + charInfo.passiveTalents[i].description);
+  }
 
+}
+//passiveTalents[0].name
+
+
+// async function getCharacterPassive(name) {
+//   let response = await fetch(`https://api.genshin.dev/characters/${name}`)
+//   let charPassive = await response.json();
+//   const passiveTalents = charPassive.passiveTalents;
+//   for (let i = 0; i < passiveTalents.length; i++) {
+//     const option = document.createElement('option')
+//     option.value = "Passive: " + passiveTalents[i].name + "\nUnlock:" + passiveTalents[i].unlock + "\nDescription: " + passiveTalents[i].description
+
+//     option.innerHTML = passiveTalents[i].name
+//   }
+//   select.addEventListener("change", (e) => console.log(e.target.value));
+// }
 // async function getCharacterSkillInfo(name) {
 //   let renderSkillInfo = await fetch(`https://api.genshin.dev/characters/${name}`)
 //   let charSkillInfo = await renderSkillInfo.json();
@@ -68,7 +90,7 @@ async function getCharactersInfo(name) {
 async function getCharacterCard(name) {
   let imgCard = await fetch(`https://api.genshin.dev/characters/${name}/card`)
   let charCard = imgCard.url;
-  console.log("imgCard: "+ charCard);
+  console.log("imgCard: " + charCard);
   return (charCard)
 }
 
@@ -76,13 +98,14 @@ async function getCharacterCard(name) {
 
 renderSelectChar()
 getCharacters()
-document.getElementById("SelectChar").addEventListener('change', event => {
+selectChar.addEventListener('change', event => {
   const selection = event.target.value;
   getCharacterDetails(selection);
   getCharacterCard(selection)
   // getCharactersInfo(selection);
 });
 
+selectSkill.addEventListener("change", (e) => console.log(e.target.value));
 
 // getCharacterDetails('hu-tao')
 // getCharacterCard('hu-tao')
