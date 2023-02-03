@@ -5,12 +5,14 @@ const charInfoDisplay = document.querySelector(".CharInfo");
 const charInfoPassiveDisplay = document.querySelector(".CharPassives")
 const charSkillInfoDisplay = document.querySelector(".CharSkillInfo")
 const charSplash = document.querySelector(".CharSplash")
-document.getElementById("Jess").style.display ="none";
-document.getElementById("Will").style.display ="none";
+document.getElementById("Jess").style.display = "none";
+document.getElementById("Will").style.display = "none";
+document.getElementById("Amber").style.display = "none";
 
 function displayTest() {
   document.getElementById("Jess").style.display = "block";
   document.getElementById("Will").style.display = "block";
+  document.getElementById("Amber").style.display = "block";
 }
 
 document.getElementById('SelectChar').addEventListener('click', displayTest);
@@ -50,7 +52,7 @@ async function getCharacterDetails(name) {
 //---------------------------------
 // Dropbox for selecting character
 
-function upperCase (name) {
+function upperCase(name) {
   return name.charAt(0).toUpperCase() + name.slice(1)
 }
 console.log(upperCase("snake"))
@@ -102,6 +104,27 @@ async function getCharactersInfo(name) {
   textVision.innerHTML = `Vision: ${charInfo.vision}`;
   charInfoDisplay.append(textVision);
   //----------------------------------
+  console.log("Affiliation: " + charInfo.affiliation);
+  //text for Affiliation
+  const textAffiliation = document.createElement('p');
+  textAffiliation.classList.add('Affiliation')
+  textAffiliation.innerHTML = `Affiliation: ${charInfo.affiliation}`;
+  charInfoDisplay.append(textAffiliation);
+  //----------------------------------
+  console.log("Nation: " + charInfo.nation);
+  //text for Nation
+  const textNation = document.createElement('p');
+  textNation.classList.add('Nation')
+  textNation.innerHTML = `Nation: ${charInfo.nation}`;
+  charInfoDisplay.append(textNation);
+  //----------------------------------
+  console.log("Birthday: " + charInfo.birthday);
+  //text for Birthday
+  const textBirthday = document.createElement('p');
+  textBirthday.classList.add('Birthday')
+  textBirthday.innerHTML = `Birthday: ${charInfo.birthday}`;
+  charInfoDisplay.append(textBirthday);
+  //----------------------------------
   console.log("Description: " + charInfo.description);
   //text for description
   const textDescription = document.createElement('p');
@@ -125,7 +148,7 @@ async function getCharactersInfo(name) {
     charInfoPassiveDisplay.append(textPassiveDescription);
     //----------------------------------
   }
-getCharacterSplash(name)
+  getCharacterSplash(name)
 }
 
 
@@ -165,6 +188,8 @@ async function getCharacterCard(name) {
   img.src = charimg;
   charCard.innerHTML = ""
   charCard.append(img);
+  img.width = 740;
+  img.height = 1316;
 
 }
 
@@ -177,7 +202,6 @@ async function getCharacterSplash(name) {
   charSplash.innerHTML = ""
   charSplash.append(img);
   console.log(imgSplash);
-
 }
 
 renderSelectChar()
