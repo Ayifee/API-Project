@@ -6,21 +6,37 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href='https://fonts.googleapis.com/css?family=Noto Serif' rel='stylesheet'>
+  <link rel="stylesheet" typr="text/css" href="style.css" />
+  <!-- <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+    <source src="https://assets.codepen.io/6093409/river.mp4" type="video/mp4">
+    </video> -->
 </head>
 
 <body>
-  <h1>Genshin Character Archive</h1>
+  <div class="title">Genshin Character Archive</div>
   <select id="SelectChar">
+    <option selected="selected" disabled>Choose character here
+    </option>
+  </select>
+  <div id="Will">
+  <div id="CharInfoCardContainer">
+  <div class="CharInfo"></div>
+  <div class="CharCard"></div>
+</div>
+<div id="CharSplashAbiltiesContainer">
+<div class="CharSplash"></div>
+<div class="CharPassives"></div>
+</div>
+</div>
+  <div class="CharAbilties">Class Abilties</div>
+  <div id="Jess">
+  <select id="SelectCharSkill">
     <option selected="selected" disabled>Choose here
     </option>
   </select>
-  <div class="CharInfo">Char Info</div>
-  <div class="CharCard">Char Card</div>
-  <div class="CharPassives">Char Passive</div>
-  <select id="SelectCharSkill">
-
-  </select>
-  <div class="CharSkillInfo">Char Skill Info</div>
+</div>
+  <div class="CharSkillInfo"></div>
   <script src="script.js" defer></script>
 </body>
 

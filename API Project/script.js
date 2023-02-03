@@ -4,7 +4,16 @@ const charCard = document.querySelector(".CharCard")
 const charInfoDisplay = document.querySelector(".CharInfo");
 const charInfoPassiveDisplay = document.querySelector(".CharPassives")
 const charSkillInfoDisplay = document.querySelector(".CharSkillInfo")
+const charSplash = document.querySelector(".CharSplash")
+document.getElementById("Jess").style.display ="none";
+document.getElementById("Will").style.display ="none";
 
+function displayTest() {
+  document.getElementById("Jess").style.display = "block";
+  document.getElementById("Will").style.display = "block";
+}
+
+document.getElementById('SelectChar').addEventListener('click', displayTest);
 
 async function getCharacters() {
   let response = await fetch(`https://api.genshin.dev/characters/`)
@@ -38,17 +47,22 @@ async function getCharacterDetails(name) {
   }
 
 }
+//---------------------------------
+// Dropbox for selecting character
 
+function upperCase (name) {
+  return name.charAt(0).toUpperCase() + name.slice(1)
+}
+console.log(upperCase("snake"))
 async function renderSelectChar() {
   let renderResponse = await fetch(`https://api.genshin.dev/characters/`)
   let charDropBox = await renderResponse.json();
   for (let i = 0; i < charDropBox.length; i++) {
     const option = document.createElement('option')
-    option.value = charDropBox[i]
-    option.innerHTML = charDropBox[i]
+    option.value = upperCase(charDropBox[i])
+    option.innerHTML = upperCase(charDropBox[i])
     selectChar.appendChild(option);
   }
-
   selectChar.addEventListener("change", (e) => getCharactersInfo(e.target.value));
 }
 
@@ -111,8 +125,10 @@ async function getCharactersInfo(name) {
     charInfoPassiveDisplay.append(textPassiveDescription);
     //----------------------------------
   }
-
+getCharacterSplash(name)
 }
+
+
 //passiveTalents[0].name
 
 
@@ -142,7 +158,7 @@ async function getCharactersInfo(name) {
 // }
 
 async function getCharacterCard(name) {
-  let imgCard = await fetch(`https://api.genshin.dev/characters/${name}/card`)
+  let imgCard = await fetch(`https://api.genshin.dev/characters/${name.toLowerCase()}/card`)
   let charimg = imgCard.url;
   console.log("imgCard: " + charimg);
   const img = document.createElement("img");
@@ -150,7 +166,18 @@ async function getCharacterCard(name) {
   charCard.innerHTML = ""
   charCard.append(img);
 
-  // return (charCard)
+}
+
+async function getCharacterSplash(name) {
+  let imgSplash = await fetch(`https://api.genshin.dev/characters/${name.toLowerCase()}/gacha-splash`)
+  let splashimg = imgSplash.url;
+  console.log("imgSplash: " + splashimg);
+  const img = document.createElement("img");
+  img.src = splashimg;
+  charSplash.innerHTML = ""
+  charSplash.append(img);
+  console.log(imgSplash);
+
 }
 
 renderSelectChar()
@@ -158,7 +185,8 @@ getCharacters()
 selectChar.addEventListener('change', event => {
   const selection = event.target.value;
   getCharacterDetails(selection);
-  getCharacterCard(selection)
+  getCharacterCard(selection);
+  getCharacterSplash(selection);
   // getCharactersInfo(selection);
 });
 
@@ -186,6 +214,7 @@ selectSkill.addEventListener("change", (e) => {
   charSkillInfoDisplay.append(skillTalentsName);
   charSkillInfoDisplay.append(skillTalentsType);
   charSkillInfoDisplay.append(skillTalentsInfo);
+
 });
 
 // const textSkillDescription = document.createElement('p');
