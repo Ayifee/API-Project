@@ -1,5 +1,9 @@
 const selectSkill = document.getElementById("SelectCharSkill");
 const selectChar = document.getElementById("SelectChar")
+const charCard = document.querySelector(".CharCard")
+const charInfoDisplay = document.querySelector(".CharInfo");
+const charInfoPassiveDisplay = document.querySelector(".CharPassives")
+const charSkillInfoDisplay = document.querySelector(".CharSkillInfo")
 
 
 async function getCharacters() {
@@ -11,21 +15,28 @@ async function getCharacters() {
   }
 }
 
+let selectedCharacter
+
 async function getCharacterDetails(name) {
   let response = await fetch(`https://api.genshin.dev/characters/${name}`)
   let charDetails = await response.json();
   const skillTalents = charDetails.skillTalents;
 
+  selectedCharacter = charDetails;
+
+  console.log({ skillTalents });
+
   selectSkill.innerHTML = ''
+
   for (let i = 0; i < skillTalents.length; i++) {
     const option = document.createElement('option')
-    option.value = "Skill: " + skillTalents[i].name + "\nUnlock: " + skillTalents[i].unlock + "\nDescription: " + skillTalents[i].description
-
+    // option.value = "Skill: " + skillTalents[i].name + "\nUnlock: " + skillTalents[i].unlock + "\nDescription: " + skillTalents[i].description
+    option.value = i
     option.innerHTML = skillTalents[i].name
-    // console.log(skillTalents[i]);
-    // console.log(skillTalents[i].name);
+
     selectSkill.appendChild(option);
   }
+
 }
 
 async function renderSelectChar() {
@@ -46,16 +57,59 @@ async function getCharactersInfo(name) {
   let charInfo = await response.json();
 
   console.log(charInfo.name, "The " + charInfo.title);
+  //---------------------------------
   console.log("Constellation: " + charInfo.constellation);
+  // text for constellation
+  const textConstellation = document.createElement('p');
+  textConstellation.classList.add('Constellation')
+  textConstellation.innerHTML = `Constellation: ${charInfo.constellation}`;
+  charInfoDisplay.innerHTML = ""
+  charInfoPassiveDisplay.innerHTML = ""
+  charInfoDisplay.append(textConstellation);
+  //---------------------------------
   console.log("Rarity: " + charInfo.rarity);
+  // text for rarity
+  const textRarity = document.createElement('p');
+  textRarity.classList.add('Rarity')
+  textRarity.innerHTML = `Rarity: ${charInfo.rarity}`;
+  charInfoDisplay.append(textRarity);
+  //----------------------------------
   console.log("Weapon: " + charInfo.weapon);
+  // text for weapon
+  const textWeapon = document.createElement('p');
+  textWeapon.classList.add('Weapon')
+  textWeapon.innerHTML = `Weapon: ${charInfo.weapon}`;
+  charInfoDisplay.append(textWeapon);
+  //----------------------------------
   console.log("Vision: " + charInfo.vision);
+  // text for vision
+  const textVision = document.createElement('p');
+  textVision.classList.add('Vision')
+  textVision.innerHTML = `Vision: ${charInfo.vision}`;
+  charInfoDisplay.append(textVision);
+  //----------------------------------
   console.log("Description: " + charInfo.description);
-  // console.log("Passive 1\n " + charInfo.passiveTalents[0].name);
-  // console.log("Description: " + charInfo.passiveTalents[0].description);
+  //text for description
+  const textDescription = document.createElement('p');
+  textDescription.classList.add('Description')
+  textDescription.innerHTML = `Description: ${charInfo.description}`;
+  charInfoDisplay.append(textDescription);
+  //----------------------------------
   for (let i = 0; i < 3; i++) {
     console.log(`Passive ${i + 1}\nName: ` + charInfo.passiveTalents[i].name);
+    // text for passive
+    const textPassive = document.createElement('p');
+    textPassive.classList.add('Passive')
+    textPassive.innerHTML = `Passive ${i + 1}<br\ >Name: ${charInfo.passiveTalents[i].name} `;
+    charInfoPassiveDisplay.append(textPassive);
+    //----------------------------------
     console.log(`Description: ` + charInfo.passiveTalents[i].description);
+    // text for passive description
+    const textPassiveDescription = document.createElement('p');
+    textPassiveDescription.classList.add('PassiveDescription')
+    textPassiveDescription.innerHTML = `Description:  ${charInfo.passiveTalents[i].description} `;
+    charInfoPassiveDisplay.append(textPassiveDescription);
+    //----------------------------------
   }
 
 }
@@ -89,12 +143,15 @@ async function getCharactersInfo(name) {
 
 async function getCharacterCard(name) {
   let imgCard = await fetch(`https://api.genshin.dev/characters/${name}/card`)
-  let charCard = imgCard.url;
-  console.log("imgCard: " + charCard);
-  return (charCard)
+  let charimg = imgCard.url;
+  console.log("imgCard: " + charimg);
+  const img = document.createElement("img");
+  img.src = charimg;
+  charCard.innerHTML = ""
+  charCard.append(img);
+
+  // return (charCard)
 }
-
-
 
 renderSelectChar()
 getCharacters()
@@ -105,8 +162,36 @@ selectChar.addEventListener('change', event => {
   // getCharactersInfo(selection);
 });
 
-selectSkill.addEventListener("change", (e) => console.log(e.target.value));
+selectSkill.addEventListener("change", (e) => {
+  console.log(e.target.value);
 
+  console.log('Selected', selectedCharacter.skillTalents[e.target.value]);
+  //--------------
+  const skillTalentsName = document.createElement('p');
+  const skillTalentsType = document.createElement('div');
+  const skillTalentsInfo = document.createElement('div');
+  const skillName = selectedCharacter.skillTalents[e.target.value].name;
+  const skillType = `${selectedCharacter.skillTalents[e.target.value].unlock}:`;
+  const skillDescription = selectedCharacter.skillTalents[e.target.value].description;
+
+  console.log(selectedCharacter.skillTalents[e.target.value].description);
+  skillTalentsInfo.classList.add('SkillTalentInfo')
+  skillTalentsName.innerHTML = skillName;;
+  skillTalentsType.innerHTML = skillType;
+  skillTalentsInfo.innerHTML = skillDescription;
+
+  // charSkillInfoDisplay.innerHTML = ""
+
+  charSkillInfoDisplay.innerHTML = ''
+  charSkillInfoDisplay.append(skillTalentsName);
+  charSkillInfoDisplay.append(skillTalentsType);
+  charSkillInfoDisplay.append(skillTalentsInfo);
+});
+
+// const textSkillDescription = document.createElement('p');
+// textSkillDescription.classList.add('SkillDescription')
+// textSkillDescription.innerHTML = `Description:  ${charInfo.skillTalents[i].description} `;
+// textSkillDisplay.append(textSkillDescription);
 // getCharacterDetails('hu-tao')
 // getCharacterCard('hu-tao')
 //   getCharactersInfo('hu-tao')
