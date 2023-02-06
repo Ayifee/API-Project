@@ -122,12 +122,12 @@ async function getCharactersInfo(name) {
   textNation.innerHTML = `Nation: ${charInfo.nation}`;
   charInfoDisplay.append(textNation);
   //----------------------------------
-  console.log("Birthday: " + charInfo.birthday);
-  //text for Birthday
-  const textBirthday = document.createElement('p');
-  textBirthday.classList.add('Birthday')
-  textBirthday.innerHTML = `Birthday: ${charInfo.birthday}`;
-  charInfoDisplay.append(textBirthday);
+  // console.log("Birthday: " + charInfo.birthday);
+  // //text for Birthday
+  // const textBirthday = document.createElement('p');
+  // textBirthday.classList.add('Birthday')
+  // textBirthday.innerHTML = `Birthday: ${charInfo.birthday}`;
+  // charInfoDisplay.append(textBirthday);
   //----------------------------------
   console.log("Description: " + charInfo.description);
   //text for description
@@ -175,7 +175,7 @@ async function getCharacterSplash(name) {
   console.log("imgSplash: " + splashimg);
   const img = document.createElement("img");
   img.src = splashimg;
-  background.style.backgroundImage = "url('"+img.src+"')";
+  background.style.backgroundImage = "url('" + img.src + "')";
   background.style.backgroundRepeat = "no-repeat"
   background.style.backgroundPosition = "center"
   // charSplash.append(img);

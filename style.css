@@ -40,7 +40,7 @@
   background-image: linear-gradient(180deg, #3b0808, #005186);
   background-size: 100%;
   background-repeat: repeat;
-  height: 50%;
+  height: 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
@@ -74,7 +74,6 @@
 }
 
 #CharInfoCardContainer {
-  background: url("images/background1.jpg")  no-repeat center fixed;
   display: flex;
   border: 5px solid #000000;
   border-radius: 50px;
@@ -116,7 +115,7 @@
   margin-right: 3%;
   font-size: 200%;
   border-radius: 50px;
-  background-image: linear-gradient(180deg, #be1e1e, #bb8c8c);
+  background-image: linear-gradient(180deg, #380a93, #027100);
   background-size: 100%;
   background-repeat: repeat;
   -webkit-background-clip: text;
@@ -126,12 +125,12 @@
 }
 
 .CharSkillInfo {
-  background: url("images/background2.jpg")  no-repeat center fixed;
+  background: url("images/background2.jpg") no-repeat center fixed;
   font-size: 30px;
   border: 5px solid black;
   padding: 15px;
   border-radius: 50px;
-  background-image: linear-gradient(90deg, #000000, #0a027264);
+  background-image: linear-gradient(90deg, #000000, #0023ebb5);
   background-size: 100%;
   background-repeat: repeat;
   -webkit-background-clip: text;
@@ -142,7 +141,8 @@
 }
 
 body {
-  background: url("images/waifu.jpg")  no-repeat center fixed;
+  background: url("images/background1.jpg") no-repeat center fixed;
+  /* background: url("images/waifu.jpg")  no-repeat center fixed; */
   background-color: beige;
   /* background: url("images/background1.jpg")  no-repeat center fixed; */
 }
