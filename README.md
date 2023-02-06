@@ -25,7 +25,7 @@ and another dropbox for said characthers abilities where it will show the name a
 skill.
 
 Post-MVP
-I would like to maybe add vidoes/gifs of characthers attack animations for each chara, and work on the css side alot making it neat and pleasing to look at.
+I would like to add artifacts and stat data values as well as add in a data base and allow you to build teamp comps aswell as add your own artifact builds and roles.
 
 Goal
 Day 1 Planning, Brainstorming, and researching
