@@ -37,7 +37,7 @@
   margin-left: 3%;
   font-size: 30px;
   padding: 15px;
-  background-image: linear-gradient(180deg, #ff0000, #388cc4);
+  background-image: linear-gradient(180deg, #3b0808, #005186);
   background-size: 100%;
   background-repeat: repeat;
   height: 50%;
@@ -64,18 +64,17 @@
   border: 10px;
   padding: 15px;
   text-align: center;
-  background-image: linear-gradient(180deg, #1d3a9c, #48b5bd);
+  background-image: linear-gradient(180deg, #1d3a9c, #001314);
   background-size: 100%;
   background-repeat: repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
-  display: none;
 }
 
 #CharInfoCardContainer {
-
+  background: url("images/background1.jpg")  no-repeat center fixed;
   display: flex;
   border: 5px solid #000000;
   border-radius: 50px;
@@ -83,24 +82,30 @@
 
 #CharSplashAbiltiesContainer {
   display: flex;
-  border: 5px solid #000000;
+  border: 5px solid #070202c2;
   border-radius: 50px;
 }
 
 .CharPassives {
   background-color: black;
   text-align: center;
+  width: 100%;
   font-weight: 900;
   font-size: 35px;
   padding: 15px;
-  background-image: linear-gradient(180deg, #000000, #830000);
+  background-image: linear-gradient(180deg, #240303, #880707);
   background-size: 100%;
   background-repeat: repeat;
-  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
+}
+
+.Oreo {
+  width: 100%;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.24)
 }
 
 #SelectCharSkill {
@@ -111,7 +116,7 @@
   margin-right: 3%;
   font-size: 200%;
   border-radius: 50px;
-  background-image: linear-gradient(180deg, #ff0505, #000000);
+  background-image: linear-gradient(180deg, #be1e1e, #bb8c8c);
   background-size: 100%;
   background-repeat: repeat;
   -webkit-background-clip: text;
@@ -121,11 +126,12 @@
 }
 
 .CharSkillInfo {
+  background: url("images/background2.jpg")  no-repeat center fixed;
   font-size: 30px;
   border: 5px solid black;
   padding: 15px;
   border-radius: 50px;
-  background-image: linear-gradient(90deg, #000000, #0e37a764);
+  background-image: linear-gradient(90deg, #000000, #0a027264);
   background-size: 100%;
   background-repeat: repeat;
   -webkit-background-clip: text;
@@ -136,11 +142,9 @@
 }
 
 body {
+  background: url("images/waifu.jpg")  no-repeat center fixed;
   background-color: beige;
-}
-
-.test {
-  background-color:;
+  /* background: url("images/background1.jpg")  no-repeat center fixed; */
 }
 
 /* #background-video {
